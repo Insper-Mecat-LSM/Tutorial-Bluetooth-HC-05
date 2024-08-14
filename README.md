@@ -1,7 +1,7 @@
 # Tutorial-Bluetooth-HC-05
 Tutorial Bluetooth HC-05 com duas Placas NUCLEO-F401RE
 # Introdução:
-Esse tutorial tem o objetivo de introduzir o leitor a utilizar o módulo Bluetooth HC-05 para a comunicação entre duas placas NUCLEO-F401RE. Esse tutorial será dividido em três partes. A primeira parte será dedicada a entender como conectar dois módulos entre si. A segunda parte será uma prática com LED para aprender as ligações elétricas e como é passado a informação entre os módulos checar. Por último, apresentar funções interessantes para projetos mais complexos. 
+Esse tutorial tem o objetivo de introduzir o leitor a utilização do módulo Bluetooth HC-05 para a comunicação entre duas placas NUCLEO-F401RE. Esse tutorial será dividido em três partes. A primeira parte será dedicada a entender como conectar dois módulos entre si. A segunda parte será uma prática com LED para aprender as ligações elétricas e como é passado a informação entre os módulos checar. Por último, apresentar funções interessantes para projetos mais complexos. 
 # Começando com o HC-05
 O módulo Bluetooth HC-05 é um transmissor de informação. Para que dois módulos consigam comunicar entre si é preciso que um dos módulos seja o mestre e o outro o servo. O mestre irá, sempre que ligado, procurar pelo servo, e vice-versa. Para que isso ocorra utilizamos a FT232RL USB to TTL, essa placa juntamente com o Teraterm permitem que dois módulos se reconheçam e interajam entre si. Abaixo está um link para ajudar a com a configuração do módulo.
 
@@ -21,6 +21,42 @@ Antes de tudo, é preciso realizar as conexões corretas entre o módulo e a pla
 ![image](https://github.com/user-attachments/assets/2424c8d0-1b5f-4a13-8020-2011685e0021)
 
 Agora podemos rodar o primeiro código utilizando os módulos como comunicação entre as placas. O objetivo é pressionar o botão do usuário em uma placa e acender o LED da outra placa, sem conexões físicas!
-A informção passada pelos módulos é em formato de char e existem 
+Para esse objetivo uma placa vai apenas enviar informação (botão precionado ou não) e a outra placa vai apenas receber e executar uma rotina (precionado liga o LED). Então para começar vamos ver como fica o código para enviar informação.
+
 ```C++
-DigitalIn(D1);
+#include "mbed.h"
+DigitalOut myled(LED1);
+Serial bt (PA_9, PA_10); // Define as portas do módulo bluetooth
+int main() {
+  while(1) {
+    char c = bt.getc(); // Atribui a informação recebida pelo módulo à char "c"
+    if(c == 'c') { // se a informaçã recebida for 'c' ligar o LED
+        myled = 1;
+        wait_ms(200);
+    }
+    if(c == 'd') { // se a informaçã recebida for 'd' desligar o LED
+        myled = 0;
+        wait_ms(200);
+    }
+  }
+}
+```
+
+
+```C++
+#include "mbed.h"
+DigitalOut myled(LED1);
+Serial bt (PA_9, PA_10); // Define as portas do módulo bluetooth
+int main() {
+  while(1) {
+    char c = bt.getc(); // Atribui a informação recebida pelo módulo à char "c"
+    if(c == 'c') { // se a informaçã recebida for 'c' ligar o LED
+        myled = 1;
+        wait_ms(200);
+    }
+    if(c == 'd') { // se a informaçã recebida for 'd' desligar o LED
+        myled = 0;
+        wait_ms(200);
+    }
+  }
+}
