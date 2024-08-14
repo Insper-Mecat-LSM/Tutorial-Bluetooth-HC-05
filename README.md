@@ -12,7 +12,7 @@ O módulo Bluetooth HC-05 é um transmissor de informação. Para que dois módu
 ![image](https://github.com/user-attachments/assets/a65120a2-5fe1-4ad7-94e0-9a7bc2eb8a8f)
 
 Agora que a configuração esta feita, podemos partir para a primeira prática e ver os módulos funcionando!
-# Primeira prática: LED
+# Prática: LED
 Antes de tudo, é preciso realizar as conexões corretas entre o módulo e a placa núcleo. O VCC do módulo pode ser alimentado pelo 3.3V da placa, o GND do módulo no GND da placa, o RXD é p receptor de informações e na placa núcleo é o pino PA_10 e o TXD que é o transmissor é o pino PA_9. A foto abaixo mostra o mapa de pinos da NUCLEO-401RE para auxiliar-los nas conexões.
 
 ![image](https://github.com/user-attachments/assets/df690810-7d15-4b23-81ac-c86b935ecd67)
@@ -61,3 +61,5 @@ int main() {
 }
 ```
 O código acima indentifica as informações recebidas pela outra placa e acende ou não o LED dependendo do conteúdo da char 'c'. Para receber uma informação utilizamos o bt.getc().
+# Funções interessantes
+Com o que já foi apresentado é possível implementar diversas rotinas. Porém, existem outras funções e estratégias para deixar o código mais eficiente e explorar outras funções do módulo Bluetooth.
