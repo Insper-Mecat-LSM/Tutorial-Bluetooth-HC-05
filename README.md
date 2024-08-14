@@ -25,12 +25,31 @@ Para esse objetivo uma placa vai apenas enviar informação (botão precionado o
 
 ```C++
 #include "mbed.h"
-DigitalOut myled(LED1);
+DigitalIn botao(USER_BUTTON); // Botão do usuário
+Serial bt (PA_9, PA_10); // Define as portas do módulo bluetooth
+int main() {
+  while(1) {
+    if(botao == 1) { // se o botão for precionado enviar 'l'
+        bt.putc('l');
+        wait_ms(200);
+    }
+    if(botao == 0) { // se o botão não for precionado enviar 'd'
+        bt.putc('d');
+        wait_ms(200);
+    }
+  }
+}
+```
+O código acima envia informações diferentes para a outra placa caso o botão do usuário seja apertado ou não. Para enviar uma informação utilizamos o bt.putc().
+
+```C++
+#include "mbed.h"
+DigitalOut myled(LED1); // LED da núcleo
 Serial bt (PA_9, PA_10); // Define as portas do módulo bluetooth
 int main() {
   while(1) {
     char c = bt.getc(); // Atribui a informação recebida pelo módulo à char "c"
-    if(c == 'c') { // se a informaçã recebida for 'c' ligar o LED
+    if(c == 'l') { // se a informaçã recebida for 'c' ligar o LED
         myled = 1;
         wait_ms(200);
     }
@@ -41,22 +60,4 @@ int main() {
   }
 }
 ```
-
-
-```C++
-#include "mbed.h"
-DigitalOut myled(LED1);
-Serial bt (PA_9, PA_10); // Define as portas do módulo bluetooth
-int main() {
-  while(1) {
-    char c = bt.getc(); // Atribui a informação recebida pelo módulo à char "c"
-    if(c == 'c') { // se a informaçã recebida for 'c' ligar o LED
-        myled = 1;
-        wait_ms(200);
-    }
-    if(c == 'd') { // se a informaçã recebida for 'd' desligar o LED
-        myled = 0;
-        wait_ms(200);
-    }
-  }
-}
+O código acima indentifica as informações recebidas pela outra placa e acende ou não o LED dependendo do conteúdo da char 'c'. Para receber uma informação utilizamos o bt.getc().
