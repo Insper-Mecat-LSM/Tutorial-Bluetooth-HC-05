@@ -63,3 +63,25 @@ int main() {
 O código acima indentifica as informações recebidas pela outra placa e acende ou não o LED dependendo do conteúdo da char 'c'. Para receber uma informação utilizamos o bt.getc().
 # Funções interessantes
 Com o que já foi apresentado é possível implementar diversas rotinas. Porém, existem outras funções e estratégias para deixar o código mais eficiente e explorar outras funções do módulo Bluetooth.
+# Callback
+A ideia da função de callback é sempre receber a informação do módulo bluetooth e guarda-la em uma variável, assim, no código a variável que garda a informação do bluetooth sempre estará atualizada com a nova informação. O intuito é que essa função seja a primeira, ou uma das primeiras, linha de código dentro do "main".
+```C++
+#include "mbed.h"
+
+Serial bt (PA_9, PA_10);
+char c; // declara c como char
+
+void callback(void); // criando a função callback
+
+int main() {
+    bt.attach(&callback); // Toda vez que chega uma informação do módulo essa linha de código executa a função callback
+    while(1) {
+        // Código a ser executado
+    }
+          
+}
+void callback(void) 
+{
+    c = bt.getc();
+}
+```
