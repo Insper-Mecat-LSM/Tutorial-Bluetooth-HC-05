@@ -4,8 +4,12 @@ Tutorial Bluetooth HC-05 com duas Placas NUCLEO-F401RE
 Esse tutorial tem o objetivo de introduzir o leitor a utilização do módulo Bluetooth HC-05 para a comunicação entre duas placas NUCLEO-F401RE. Esse tutorial será dividido em três partes. A primeira parte será dedicada a entender como conectar dois módulos entre si. A segunda parte será uma prática com LED para aprender as ligações elétricas e como é passado a informação entre os módulos checar. Por último, apresentar funções interessantes para projetos mais complexos. 
 # Começando com o HC-05
 O módulo Bluetooth HC-05 é um transmissor de informação. Para que dois módulos consigam comunicar entre si é preciso que um dos módulos seja o mestre e o outro o servo. O mestre irá, sempre que ligado, procurar pelo servo, e vice-versa. Para que isso ocorra utilizamos a FT232RL USB to TTL, essa placa juntamente com o Teraterm permitem que dois módulos se reconheçam e interajam entre si. Abaixo está um link para ajudar a com a configuração do módulo.
+O primeiro link trata de como configurar um módulo utilizando o FT232RL e o segundo como configurar dois módulos para que eles interajam entre si.
 
-[utilizando a FT232RL e o Teraterm para configurar o HC-05](https://www.arduinoecia.com.br/modulo-bluetooth-hc-05-conversor-ftdi/)
+[utilizando a FT232RL e o Termite para configurar o HC-05](https://www.arduinoecia.com.br/modulo-bluetooth-hc-05-conversor-ftdi/)
+
+[Configurando módulos como mestre e servo](https://howtomechatronics.com/tutorials/arduino/how-to-configure-pair-two-hc-05-bluetooth-module-master-slave-commands/)
+
 
 
 
@@ -85,3 +89,25 @@ void callback(void)
     c = bt.getc();
 }
 ```
+# Buffer
+As vezes é necessário enviar números como informação, para isso, utilizamos a função buffer para converter uma char para int. A ideia é que dentro do callback tenha uma condição que reconhece que a informação é um número e transorfma aquela informação para int. 
+O código abaixo deseja enviar um número por bluetooth, para iso é necessário transformar o int em char:
+```C++
+#include "mbed.h"
+
+Serial bt (PA_9, PA_10);
+char c; // declara c como char
+
+void callback(void); // criando a função callback
+
+int main() {
+    bt.attach(&callback); // Toda vez que chega uma informação do módulo essa linha de código executa a função callback
+    while(1) {
+        // Código a ser executado
+    }
+          
+}
+void callback(void) 
+{
+    c = bt.getc();
+}
