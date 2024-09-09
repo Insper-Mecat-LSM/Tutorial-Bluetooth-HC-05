@@ -1,7 +1,7 @@
 # Tutorial-Bluetooth-HC-05
 Tutorial Bluetooth HC-05 com duas Placas NUCLEO-F401RE
 # Introdução:
-Esse tutorial tem o objetivo de introduzir o leitor a utilização do módulo Bluetooth HC-05 para a comunicação entre duas placas NUCLEO-F401RE. Esse tutorial será dividido em três partes. A primeira parte será dedicada a entender como conectar dois módulos entre si. A segunda parte será uma prática com LED para aprender as ligações elétricas e como é passado a informação entre os módulos checar. Por último, apresentar funções interessantes para projetos mais complexos. 
+Esse tutorial tem o objetivo de introduzir o leitor a utilização do módulo Bluetooth HC-05 para a comunicação entre duas placas NUCLEO-F401RE. Esse tutorial será dividido em três partes. A primeira parte será dedicada a entender como conectar dois módulos entre si. A segunda parte será uma prática com LED para aprender as ligações elétricas e como é passado a informação entre os módulos. Por último, apresentar funções interessantes para projetos mais complexos. 
 # Começando com o HC-05
 O módulo Bluetooth HC-05 é um transmissor de informação. Para que dois módulos consigam comunicar entre si é preciso que um dos módulos seja o mestre e o outro o servo. O mestre irá, sempre que ligado, procurar pelo servo, e vice-versa. Para que isso ocorra utilizamos a FT232RL USB to TTL, essa placa juntamente com o Teraterm permitem que dois módulos se reconheçam e interajam entre si. Abaixo está um link para ajudar a com a configuração do módulo.
 O primeiro link trata de como configurar um módulo utilizando o FT232RL e o segundo como configurar dois módulos para que eles interajam entre si.
@@ -14,6 +14,22 @@ O primeiro link trata de como configurar um módulo utilizando o FT232RL e o seg
 
 
 ![image](https://github.com/user-attachments/assets/a65120a2-5fe1-4ad7-94e0-9a7bc2eb8a8f)
+
+# Passo a passo para a configuração dos módulos
+
+- Baixar o Termite que irá permitir a configuração dos módulos (link para download no primeiro link)
+- Conectar o primeiro módulo com o FT232RL como mostrado na imagem a seguir:
+  
+![image](https://github.com/user-attachments/assets/0a3bebd3-21e9-4c20-abcd-2623fb1a1b99)
+
+- Abrir o terminal do termite e escrever "AT" que serve como teste para ver se a conexão funcionou, ele deve devolver um "OK".
+- Agora que sabemos que a conexão funcionou escreva “AT+ADDR?” que vai devolver o endereço do módulo. Anote o endereço. Você deve receber algo do tipo: 98d3:34:905d3f
+- Por último escreva “AT+ROLE=0” que vai configurar o módulo como slave. Desconecte o módulo bluetooth do FT232RL e conecte o outro módulo.
+- Escreva "AT" para testar a conexão. Após receber o "OK", escreva “AT+ROLE=1” que vai configurar o módulo como master.
+- Escreva “AT+CMODE=0” que vai configurar o módulo para o modo de conexão de "Endereço fixo".
+- Por último escreva “AT+BIND= endereço que você anotou preveamente” para que o módulo mestre procure pelo servo para se conectar. Importante! Ao escrever o endereço mude os ":" por ",". Exemplo: “AT+BIND=98d3,34,905d3f".
+  
+
 
 Agora que a configuração esta feita, podemos partir para a primeira prática e ver os módulos funcionando!
 # Prática: LED
