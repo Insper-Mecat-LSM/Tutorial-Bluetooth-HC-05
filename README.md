@@ -1,7 +1,7 @@
 # Tutorial-Bluetooth-HC-05
 Tutorial para a comunicação Bluetooth através do módulo HC-05 entre duas Placas NUCLEO-F401RE
 # Introdução:
-Este tutorial tem o objetivo de introduzir o leitor à utilização do módulo Bluetooth HC-05 para a comunicação entre duas placas NUCLEO-F401RE. O tutorial será dividido em três partes. A primeira parte será dedicada a entender como conectar dois módulos entre si. A segunda parte será uma prática com LED, na qual será ensinado como realizar as conexões elétricas e como a informação é transmitida entre os módulos. Por fim, serão apresentadas funções interessantes para projetos mais complexos.
+Este tutorial tem o objetivo de introduzir o leitor à utilização do módulo Bluetooth HC-05 para a comunicação entre duas placas NUCLEO-F401RE. O tutorial será dividido em três partes. A primeira parte será dedicada a entender como conectar dois módulos entre si. A segunda parte será uma prática com LED, na qual será ensinado como realizar as conexões físicas e como a informação é transmitida entre os módulos. Por fim, serão apresentadas funções interessantes para projetos mais complexos.
 # Começando com o HC-05
 O módulo Bluetooth HC-05 é um transmissor de informações. Para que dois módulos consigam se comunicar entre si, é necessário que um dos módulos seja o mestre e o outro, o escravo. O mestre, sempre que ligado, irá procurar pelo escravo, e vice-versa. Para que isso ocorra, utilizamos a placa FT232RL USB to TTL, que, juntamente com o Termite, permite que os dois módulos se reconheçam e interajam entre si. 
 Abaixo está um passo a passo para auxiliar na configuração dos módulos. Em "Referências" estão dois links que também falam sobre esse assunto.
