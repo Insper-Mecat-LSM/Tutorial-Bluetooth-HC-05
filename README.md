@@ -186,10 +186,7 @@ Com isso, você está preparado para utilizar o módulo HC-05 para comunicação
 
   ## Colaboradores
   - Silvio Szafir
-  - Fabio Ferraz Junior
   - Kaique Dognani
-  - Raphael Carvalho Souza Pires
-  - Hugo Lara Campos 
 
   
 # Referências 
