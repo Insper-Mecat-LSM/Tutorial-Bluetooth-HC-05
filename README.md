@@ -31,7 +31,7 @@ Agora que a configuração esta feita, podemos partir para a primeira prática e
 # Prática: LED
 Antes de tudo, é preciso realizar as conexões corretas entre o módulo e a placa núcleo. O VCC do módulo pode ser alimentado pelo 3.3V da placa, o GND do módulo no GND da placa, o RXD é o receptor de informações e na placa núcleo é o pino PA_10 e o TXD que é o transmissor é o pino PA_9. A foto abaixo mostra o mapa de pinos da NUCLEO-401RE para auxiliar-los nas conexões.
 
-![image](https://github.com/user-attachments/assets/df690810-7d15-4b23-81ac-c86b935ecd67)
+![image](https://github.com/user-attachments/assets/f167d125-5d63-4126-805d-54313087135b)
 
 
 ![image](https://github.com/user-attachments/assets/2424c8d0-1b5f-4a13-8020-2011685e0021)
